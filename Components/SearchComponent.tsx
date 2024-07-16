@@ -40,6 +40,7 @@ const SearchComponent = () => {
         setLoading(false);
     };
 
+
     return (
         <div>
             <h1>Search ID</h1>
@@ -60,12 +61,16 @@ const SearchComponent = () => {
                     <h2>Search Results</h2>
                     {searchResults.map((item, index) => (
                         <div key={index}>
-                            <p>GUID: {item.guid}</p>
-                            <p>Score: {item.score}</p>
-                            <p>Group: {item.group}</p>
-                            <img src={item.base64} alt={`Result ${index + 1}`} />
+
+
+                            <a href={item.url}>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Factotum_link_icon.svg" alt={'logo'} height={20} width={20}/>
+                            </a>
+                                <p>Score: {item.score}</p>
+                                <img src={item.base64} alt={`Result ${index + 1}`}/>
                         </div>
-                    ))}
+
+                        ))}
                 </div>
             )}
         </div>
