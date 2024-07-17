@@ -9,9 +9,16 @@ type Data = {
   secret: string
 }
 
-export default function RegisterHandler(
+export default async function RegisterHandler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' , secret: shortid.generate() })
+
+ var  name =  req.body.name;
+ var secret=  shortid.generate();
+    const client = await pool.connect();
+  const result = await client.query('insert into user_tab ( name , secret_key ) values(   ' + '\'' + name  + '\'' + ' , '  + '\'' + + secret  + '\''  +' )');
+
+  client.release();
+  res.status(200).json({ name, secret })
 }
